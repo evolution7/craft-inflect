@@ -130,6 +130,9 @@ class InflectTwigExtension extends \Twig_Extension
                 // Remove prefix/postfix if it's an exact number
                 $prefixOrPostfix = ($number % $count) ? $prefixOrPostfix : '';
 
+                // Set precision to 0 if not billions
+                $precision = ($letter == 'b') ? $precision : 0;
+
                 if ($usePostfix) {
                     return round(($number / $count), $precision) . $letter . $prefixOrPostfix;
                 } else {
