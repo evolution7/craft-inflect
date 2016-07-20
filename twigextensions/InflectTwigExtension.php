@@ -134,9 +134,17 @@ class InflectTwigExtension extends \Twig_Extension
                 $precision = ($letter == 'b') ? $precision : 0;
 
                 if ($usePostfix) {
+                  if ($precision == 0) {
+                    return floor($number / $count) . $letter . $prefixOrPostfix;
+                  } else {
                     return round(($number / $count), $precision) . $letter . $prefixOrPostfix;
+                  }
                 } else {
+                  if ($precision == 0) {
+                    return $prefixOrPostfix . floor($number / $count) . $letter;
+                  } else {
                     return $prefixOrPostfix . round(($number / $count), $precision) . $letter;
+                  }
                 }
 
             } elseif ($number == $count) {
